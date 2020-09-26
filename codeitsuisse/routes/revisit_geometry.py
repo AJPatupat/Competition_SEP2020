@@ -24,10 +24,7 @@ def evaluateRevisitGeometry():
     for i in range(len(P)):
         j = i + 1
         if j == len(P):
-            if len(P) == 2:
-                continue;
-            else:
-                j = 0
+            j = 0
         numerator = (P[i]["x"] - x) * dy - (P[i]["y"] - y) * dx
         denominator = (P[i]["x"] - P[j]["x"]) * dy - (P[i]["y"] - P[j]["y"]) * dx
         if denominator == 0:
