@@ -12,11 +12,8 @@ def evaluateIntelligentFarming():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
 
-    runId = data.get("runId")
-    tests = data.get("list")
-
-    for i in range(len(tests)):
-        geneSequence = tests[i]["geneSequence"]
+    for i in range(len(data["list"])):
+        geneSequence = data["list"][i]["geneSequence"]
 
         countA = geneSequence.count("A")
         countC = geneSequence.count("C")
@@ -96,11 +93,10 @@ def evaluateIntelligentFarming():
             ans += "A"
             countA -= 1       
 
-        tests[i]["geneSequence"] = ans
+        data["list"][i]["geneSequence"] = ans
 
-    result = {"runId" : runId, "list": tests}
-    logging.info("My result :{}".format(result))
-    return json.dumps(result);
+    logging.info("My result :{}".format(data))
+    return json.dumps(data);
 
 
 
