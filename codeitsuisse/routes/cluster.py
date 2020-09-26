@@ -35,6 +35,6 @@ def evaluateCluster():
                 clusters = clusters + 1
                 check(data, i, j)
 
-    result = {"answers" : clusters}
+    result = {"answer" : clusters}
     logging.info("My result :{}".format(result))
     return json.dumps(result)
