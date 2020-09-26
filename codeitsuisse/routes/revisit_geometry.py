@@ -30,7 +30,7 @@ def evaluateRevisitGeometry():
         if denominator == 0:
             continue
         t = numerator / denominator
-        if t >= 1 or t < 0:
+        if t > 1 or t < 0:
             continue
         p = { "x": P[i]["x"] + t * (P[j]["x"] - P[i]["x"]), "y": P[i]["y"] + t * (P[j]["y"] - P[i]["y"])}
         ans.append(p)
