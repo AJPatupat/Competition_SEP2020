@@ -9,21 +9,28 @@ logger = logging.getLogger(__name__)
 
 def solve(books, days):
 
-    min = len(books)
+    while len(days) > 0 and days[0] < books[0]:
+        days.pop(0)
+
+    running = 0
     for i in range(len(books)):
-        booksCopy = list(books)
-        daysCopy = list(days)
-        while len(daysCopy) > 0 and daysCopy[0] < booksCopy[i]:
-            daysCopy.pop(0)
-        if len(daysCopy) == 0:
-            continue
-        daysCopy[0] -= booksCopy.pop(i)
-        result = solve(booksCopy, daysCopy)
-        if result == 0:
-            return 0
-        if min > result:
-            min = result
-    return min
+        running += books[i]
+        if running > sum(days):
+            books = books[:i]
+            break
+
+    if len(books) < 2:
+        return len(books)
+    elif books[0] + books[1] > days[0]:
+        i = 0
+        while i < len(books) and books[i] <= days[0]:
+            i += 1
+        days[0] -= books.pop(i-1)
+        return 1 + solve(books, days)
+    else:
+        days[0] -= books.pop(0)
+        return 1 + solve(books, days)
+
 
 @app.route('/olympiad-of-babylon', methods=['POST'])
 def evaluateOlympiad():
@@ -31,8 +38,9 @@ def evaluateOlympiad():
     logging.info("data sent for evaluation {}".format(data))
     books = data["books"]
     days = data["days"]
-    result = len(books) - solve(books, days)
-    result = {"optimalNumberOfBooks": result}
+    books.sort()
+    days.sort()
+    result = {"optimalNumberOfBooks": solve(books, days)}
     logging.info("My result :{}".format(result))
     return json.dumps(result);
 
