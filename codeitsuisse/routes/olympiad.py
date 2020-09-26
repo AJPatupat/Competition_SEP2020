@@ -24,7 +24,7 @@ def solve(books, days):
 
     max = 0
     for i in range(len(books)):
-        if books[i] <= daysCopy[0]:
+        if books[i] <= days[0]:
             booksCopy = list(books)
             daysCopy = list(days)
             daysCopy[0] -= booksCopy.pop(i)
