@@ -96,7 +96,11 @@ def evaluateIntelligentFarming():
         data["list"][i]["geneSequence"] = ans
 
     logging.info("My result :{}".format(data))
-    return json.dumps(data);
+
+    resp = json.dumps(data)
+    return resp.RawResponse(
+        headers={"content-type": "application/json"}
+    )
 
 
 
