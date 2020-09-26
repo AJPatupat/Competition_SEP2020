@@ -7,3 +7,4 @@ import codeitsuisse.routes.clean_floor
 import codeitsuisse.routes.cluster
 import codeitsuisse.routes.fruitbasket
 import codeitsuisse.routes.intelligent_farming
+import codeitsuisse.routes.social_distancing
