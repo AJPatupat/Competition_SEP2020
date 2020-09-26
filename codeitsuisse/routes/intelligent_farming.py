@@ -97,10 +97,12 @@ def evaluateIntelligentFarming():
 
     logging.info("My result :{}".format(data))
 
-    resp = json.dumps(data)
-    return resp.RawResponse(
-        headers={"content-type": "application/json"}
+    response = app.response_class(
+        response=json.dumps(data),
+        status=200,
+        mimetype='application/json'
     )
+    return response
 
 
 
