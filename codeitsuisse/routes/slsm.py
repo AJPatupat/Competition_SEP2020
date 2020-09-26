@@ -22,7 +22,7 @@ def evaluateSLSM():
     ladderLow = []
     smoke = []
     mirror = []
-    steps = list(range(n*n, -n, -n))
+    steps = list(range(2*n, -2, -2))
     nexts = list(range(0, n+1, 1))
 
     for j in jumps:
@@ -60,12 +60,11 @@ def evaluateSLSM():
                 steps[d] = s
                 nexts[d] = i
 
-    logging.info("My result :{}".format(nexts))
-
     i = 1
     best = []
     bestSub = []
     while i < n:
+        logging.info("My path :{}".format(i))
         if i in ladderLow or i in snakeHigh:
             i = nexts[i]
             continue
@@ -78,8 +77,6 @@ def evaluateSLSM():
         bestSub = []
     if len(bestSub) > 0:
         best.append(list(bestSub))
-
-    logging.info("My result :{}".format(best))
 
     answer = []
     while len(best) > 1:
