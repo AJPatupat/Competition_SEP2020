@@ -60,6 +60,8 @@ def evaluateSLSM():
                 steps[d] = s
                 nexts[d] = i
 
+    logging.info("My result :{}".format(nexts))
+
     i = 1
     best = []
     bestSub = []
@@ -72,17 +74,19 @@ def evaluateSLSM():
             i = nexts[i]
             continue
         i = nexts[i]
-        best.append(bestSub)
+        best.append(list(bestSub))
         bestSub = []
     if len(bestSub) > 0:
-        best.append(bestSub)
+        best.append(list(bestSub))
+
+    logging.info("My result :{}".format(best))
 
     answer = []
     while len(best) > 1:
-        b = best.pop()
+        b = best.pop(0)
         for i in range(p):
             answer = answer + b
-    b = best.pop()
+    b = best.pop(0)
     for i in range(p-1):
         answer = answer + b
         answer[-1] = 7 - answer[-1]
