@@ -9,3 +9,4 @@ import codeitsuisse.routes.fruitbasket
 import codeitsuisse.routes.intelligent_farming
 import codeitsuisse.routes.social_distancing
 import codeitsuisse.routes.contact_trace
+import codeitsuisse.routes.inventory_management
