@@ -27,24 +27,12 @@ def solve(books, days):
         booksCopy = list(books)
         daysCopy = list(days)
         daysCopy[0] -= booksCopy.pop(i)
-        result = solve(booksCopy, daysCopy)
-        if result == len(books)-1:
-            return len(books)
-        if max < result + 1:
-            max = result + 1
+        result = 1 + solve(booksCopy, daysCopy)
+        #if result == len(books):
+        #    return result
+        if max < result:
+            max = result
     return max
-
-#    if len(books) < 2:
-#        return len(books)
-#    elif books[0] + books[1] > days[0]:
-#        i = 0
-#        while i < len(books) and books[i] <= days[0]:
-#            i += 1
-#        days[0] -= books.pop(i-1)
-#        return 1 + solve(books, days)
-#    else:
-#        days[0] -= books.pop(0)
-#        return 1 + solve(books, days)
 
 
 @app.route('/olympiad-of-babylon', methods=['POST'])
