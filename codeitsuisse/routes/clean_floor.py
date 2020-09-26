@@ -23,10 +23,7 @@ def evaluateCleanFloor():
             max = max - 1
 
         moves = 0
-        for i in range(len(floor)):
-
-            if floor[max] == 0:
-                break
+        for i in range(max):
 
             moves = moves + 2 * floor[i]
             if floor[i+1] > floor[i]:
@@ -41,7 +38,10 @@ def evaluateCleanFloor():
             if floor[i+1] > 0:
                 floor[i+1] = floor[i+1] - 1
             else:
-                floor[i+1] = 1            
+                floor[i+1] = 1      
+                
+        if floor[max] != 0:
+            moves = moves + 2 * floor[max]
 
         answers[title] = moves
 
