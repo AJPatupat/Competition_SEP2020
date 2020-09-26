@@ -35,7 +35,7 @@ def evaluateSaladSpree():
                     minExists = True
                     min = runningSum
 
-    result = min
+    result = {"result": min}
     logging.info("My result :{}".format(result))
     return json.dumps(result);
 
