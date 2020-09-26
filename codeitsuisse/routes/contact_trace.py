@@ -74,6 +74,9 @@ def evaluateContractTracing():
 
     check(namePath, infected["genome"], origin, cluster, answer)
 
+    if len(answer) == 0:
+        answer.append(infected["name"] + " -> "+ origin["name"])
+
     logging.info("My result :{}".format(answer))
     return json.dumps(answer);
 
