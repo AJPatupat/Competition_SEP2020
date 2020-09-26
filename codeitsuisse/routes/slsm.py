@@ -44,8 +44,6 @@ def evaluateSLSM():
 
         if i in snakeHigh:
             continue
-        elif i in ladderLow:
-            continue
         elif i in snakeLow:
             steps[snakeHigh[snakeLow.index(i)]] = steps[i]
             nexts[snakeHigh[snakeLow.index(i)]] = i
@@ -58,7 +56,7 @@ def evaluateSLSM():
         s = steps[i] + 1
         for die in range(1, min(7, i)):            
             d = i - die
-            if steps[d] > s:
+            if steps[d] > s and (d not in ladderLow) and (d not in snakeHigh):
                 steps[d] = s
                 nexts[d] = i
 
