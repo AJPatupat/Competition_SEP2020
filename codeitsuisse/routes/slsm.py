@@ -89,7 +89,10 @@ def evaluateSLSM():
     b = best.pop(0)
     for i in range(p-1):
         answer = answer + b
-        answer[-1] = 7 - answer[-1]
+        if answer[-1] > 1:
+            answer[-1] -= 1
+        else:
+            answer[-1] += 1
     answer = answer + b
 
     logging.info("My result :{}".format(answer))
