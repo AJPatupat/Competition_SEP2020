@@ -22,7 +22,7 @@ def evaluateSLSM():
     ladderLow = []
     smoke = []
     mirror = []
-    steps = list(range(2*n, -2, -2))
+    steps = list(range(n*n, -n, -n))
     nexts = list(range(0, n+1, 1))
 
     for j in jumps:
@@ -43,6 +43,8 @@ def evaluateSLSM():
     for i in range(n, 0, -1):
 
         if i in snakeHigh:
+            continue
+        elif i in ladderLow:
             continue
         elif i in snakeLow:
             steps[snakeHigh[snakeLow.index(i)]] = steps[i]
