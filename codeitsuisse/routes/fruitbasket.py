@@ -12,7 +12,7 @@ def evaluateFruitBasket():
     data = request.get_data()
     logging.info("data sent for evaluation {}".format(data))
 
-    result = 1000
+    result = 7400
     logging.info("My result :{}".format(result))
     return str(result);
 
