@@ -69,7 +69,7 @@ def evaluateSLSM():
             i = nexts[i]
             continue
         bestSub.append(nexts[i] - i)
-        if i in mirror:
+        if nexts[i] in mirror:
             i = nexts[i]
             continue
         i = nexts[i]
