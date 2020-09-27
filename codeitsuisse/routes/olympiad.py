@@ -12,10 +12,13 @@ def solve(books, days):
     while len(days) > 0 and days[0] < books[0]:
         days.pop(0)
 
+    sumDays = 0
+    for i in range(len(days)):
+        sumDays += days[i]
     running = 0
     for i in range(len(books)):
         running += books[i]
-        if running > sum(days):
+        if running > sumDays:
             books = books[:i]
             break
 

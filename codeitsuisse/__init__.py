@@ -12,3 +12,4 @@ import codeitsuisse.routes.contact_trace
 import codeitsuisse.routes.inventory_management
 import codeitsuisse.routes.slsm
 import codeitsuisse.routes.olympiad
+import codeitsuisse.routes.yin_yang
