@@ -32,59 +32,46 @@ def solve(key, k):
             ans += 1
         return ans / n
 
+    new_keys = []
     new_key = key[1:]
+    new_keys.append(new_key)
     if new_key not in memo[k-1]:
         memo[k-1][new_key] = solve(new_key, k-1)
     for i in range(len(new_key)):
         if new_key[i] == key[i]:
+            new_keys.append(new_key)
             continue
         new_list = list(new_key)
         new_list[i] = key[i]
         new_key = ''.join(new_list)
+        new_keys.append(new_key)
         if new_key not in memo[k-1]:
             memo[k-1][new_key] = solve(new_key, k-1)
-
-    new_key_1 = key[1:]
-    new_key_2 = key[:-1]
 
     if nEven:
         ans = 0
         for i in range(nHalf):
-            val_1 = memo[k-1][new_key_1]
-            val_2 = memo[k-1][new_key_2]
+            val_1 = memo[k-1][new_keys[i]]
+            val_2 = memo[k-1][new_keys[n-1-i]]
             if key[i] == "Y":
                 val_1 += 1
             if key[n-1-i] == "Y":
                 val_2 += 1
             ans += max(val_1, val_2)
-            if i == nHalf - 1:
-                break
-            list_1 = list(new_key_1)
-            list_1[i] = key[i]
-            new_key_1 = ''.join(list_1)
-            list_2 = list(new_key_2)
-            list_2[n-2-i] = key[n-1-i]
-            new_key_2 = ''.join(list_2)
         return ans / nHalf
 
     if not nEven:
         ans = 0
         for i in range(nHalf):
-            val_1 = memo[k-1][new_key_1]
-            val_2 = memo[k-1][new_key_2]
+            val_1 = memo[k-1][new_keys[i]]
+            val_2 = memo[k-1][new_keys[n-1-i]]
             if key[i] == "Y":
                 val_1 += 1
             if key[n-1-i] == "Y":
                 val_2 += 1
             ans += max(val_1, val_2)
-            list_1 = list(new_key_1)
-            list_1[i] = key[i]
-            new_key_1 = ''.join(list_1)
-            list_2 = list(new_key_2)
-            list_2[n-2-i] = key[n-1-i]
-            new_key_2 = ''.join(list_2)
         ans *= 2
-        val_1 = memo[k-1][new_key_1]
+        val_1 = memo[k-1][new_keys[nHalf]]
         if key[nHalf] == "Y":
             val_1 += 1
         ans += val_1
