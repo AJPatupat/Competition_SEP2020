@@ -7,7 +7,7 @@ from codeitsuisse import app;
 
 logger = logging.getLogger(__name__)
 
-memo = {}
+memo = []
 
 def solve(key, k):
 
@@ -101,6 +101,7 @@ def evaluateYinYang():
     if len(key) == k:
         result = key.count("Y")
     else:
+        global memo
         memo = []
         for i in range(k):
             memo.append({})
