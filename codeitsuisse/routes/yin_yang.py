@@ -32,9 +32,6 @@ def solve(key, k):
             ans += 1
         return ans / n
 
-    if k-1 not in memo:
-        memo[k-1] = {}
-
     new_key = key[1:]
     if new_key not in memo[k-1]:
         memo[k-1][new_key] = solve(new_key, k-1)
@@ -104,8 +101,11 @@ def evaluateYinYang():
     if len(key) == k:
         result = key.count("Y")
     else:
+        memo = []
+        for i in range(len(k)):
+            memo.append({})
         result = solve(key, k)
-    memo = {}
+        memo = []    
 
     response = app.response_class(
         response=json.dumps({"result" : result}),
