@@ -94,7 +94,7 @@ def solve(key, k):
 @app.route('/yin-yang', methods=['POST'])
 def evaluateYinYang():
     data = request.get_json();
-    logging.info("data sent for evaluation {}".format(data))
+    #logging.info("data sent for evaluation {}".format(data))
 
     key = data["elements"]
     k = data["number_of_operations"]
@@ -102,7 +102,7 @@ def evaluateYinYang():
         result = key.count("Y")
     else:
         memo = []
-        for i in range(len(k)):
+        for i in range(k):
             memo.append({})
         result = solve(key, k)
         memo = []    
@@ -113,7 +113,7 @@ def evaluateYinYang():
         mimetype='application/json'
     )
 
-    logging.info("My result :{}".format(result))
+    #logging.info("My result :{}".format(result))
     return response;
 
 
