@@ -11,24 +11,21 @@ memo = []
 
 def solve(key, k):
 
+    keyCount = key.count("Y")
+    if keyCount == 0 or keyCount == len(key):
+        return keyCount
+
     n = len(key)
     nEven = (n % 2 == 0)
     nHalf = n // 2
 
-    if k == 1 and nEven:
-        ans = 0
-        for i in range(nHalf):
-            if key[i] == "Y" or key[-i-1] == "Y":
-                ans += 1
-        return ans / nHalf
-
-    if k == 1 and not nEven:
+    if k == 1:
         ans = 0
         for i in range(nHalf):
             if key[i] == "Y" or key[-i-1] == "Y":
                 ans += 1
         ans *= 2
-        if key[nHalf] == "Y":
+        if (not nEven) and key[nHalf] == "Y":
             ans += 1
         return ans / n
 
@@ -48,34 +45,22 @@ def solve(key, k):
         if new_key not in memo[k-1]:
             memo[k-1][new_key] = solve(new_key, k-1)
 
-    if nEven:
-        ans = 0
-        for i in range(nHalf):
-            val_1 = memo[k-1][new_keys[i]]
-            val_2 = memo[k-1][new_keys[n-1-i]]
-            if key[i] == "Y":
-                val_1 += 1
-            if key[n-1-i] == "Y":
-                val_2 += 1
-            ans += max(val_1, val_2)
-        return ans / nHalf
-
+    ans = 0
+    for i in range(nHalf):
+        val_1 = memo[k-1][new_keys[i]]
+        val_2 = memo[k-1][new_keys[n-1-i]]
+        if key[i] == "Y":
+            val_1 += 1
+        if key[n-1-i] == "Y":
+            val_2 += 1
+        ans += max(val_1, val_2)
+    ans *= 2
     if not nEven:
-        ans = 0
-        for i in range(nHalf):
-            val_1 = memo[k-1][new_keys[i]]
-            val_2 = memo[k-1][new_keys[n-1-i]]
-            if key[i] == "Y":
-                val_1 += 1
-            if key[n-1-i] == "Y":
-                val_2 += 1
-            ans += max(val_1, val_2)
-        ans *= 2
         val_1 = memo[k-1][new_keys[nHalf]]
         if key[nHalf] == "Y":
             val_1 += 1
         ans += val_1
-        return ans / n
+    return ans / n
 
 
 @app.route('/yin-yang', methods=['POST'])
