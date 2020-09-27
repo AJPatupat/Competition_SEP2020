@@ -11,9 +11,7 @@ memo = []
 
 def solve(key, k):
 
-    keyCount = key.count("Y")
-    if keyCount == 0 or keyCount == len(key):
-        return keyCount
+    key = list(key)
 
     n = len(key)
     nEven = (n % 2 == 0)
@@ -31,19 +29,19 @@ def solve(key, k):
 
     new_keys = []
     new_key = key[1:]
-    new_keys.append(new_key)
-    if new_key not in memo[k-1]:
-        memo[k-1][new_key] = solve(new_key, k-1)
+    new = ''.join(new_key)
+    new_keys.append(new)
+    if new not in memo[k-1]:
+        memo[k-1][new] = solve(new, k-1)
     for i in range(len(new_key)):
         if new_key[i] == key[i]:
-            new_keys.append(new_key)
+            new_keys.append(new)
             continue
-        new_list = list(new_key)
-        new_list[i] = key[i]
-        new_key = ''.join(new_list)
-        new_keys.append(new_key)
-        if new_key not in memo[k-1]:
-            memo[k-1][new_key] = solve(new_key, k-1)
+        new_key[i] = key[i]
+        new = ''.join(new_key)
+        new_keys.append(new)
+        if new not in memo[k-1]:
+            memo[k-1][new] = solve(new, k-1)
 
     ans = 0
     for i in range(nHalf):
